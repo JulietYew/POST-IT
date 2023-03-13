@@ -1,6 +1,5 @@
 // A model that describes the structure of the User database
 const mongoose = require('mongoose')
-const user = require('./users.model')
 const Post = require('./posts.model')
 
 const userSchema = new mongoose.Schema({
@@ -45,24 +44,24 @@ const userSchema = new mongoose.Schema({
         type: String,
 
     },
-    avatar:{
+    avatarUrl:{
         type: String,
         required: true
     },
 
     followers:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: user ,
+        ref: 'User' ,
 
     }],
     following:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: user,
+        ref: 'User',
        
     }],
     posts: [{
-        type: Schema.Types.ObjectId,
-        ref: Post
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
       }],
       // implementing soft delete
       softDelete: {
@@ -72,6 +71,6 @@ const userSchema = new mongoose.Schema({
    
 }, {timestamps: true});
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = User;
 

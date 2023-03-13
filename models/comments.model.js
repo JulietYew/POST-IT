@@ -14,12 +14,12 @@ const commentsSchema = new mongoose.Schema({
   
   user: { 
     type: mongoose.Schema.Types.ObjectId,
-    ref: User, 
+    ref: 'User', 
     required: true, 
 },
   posts:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: Posts,
+    ref: 'Posts',
     required: true,
 },
    createdAt:{
