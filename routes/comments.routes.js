@@ -1,6 +1,6 @@
-const express = require('express')
+const {Router} = require('express')
 const {validateCommentInputs} =require('../middleware/validation')
-const commentRouter = express.Router()
+const commentRouter =Router()
 
 const  {
     create,

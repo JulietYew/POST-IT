@@ -1,6 +1,6 @@
-const express = require('express')
+const {Router} = require('express')
 
-const postRouter = express.Router()
+const postRouter = Router()
 const auth = require('../middleware/auth')
 const {validatePostInputs} = require('../middleware/validation')
 
@@ -29,4 +29,4 @@ postRouter.get('/users/:userid/posts',auth, getPosts )
 postRouter.get('/users/:userid/posts/:id', auth, getAPost)
 postRouter.get('/users/@:handle/posts', auth, getPostsByHandle)
 
-
+module.exports = postRouter
