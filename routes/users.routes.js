@@ -1,6 +1,6 @@
-const express = require('express')
+const {Router} = require('express')
 
-const userRouter = express.Router()
+const userRouter = Router()
 const auth = require('../middleware/auth')
 const {validateUserInputs} = require('../middleware/validation')
 
@@ -15,8 +15,7 @@ const  {
 
 } = userControllers = require('../controllers/users.controller')
 
-
-userRouter.post('/users/register', auth, validateUserInputs, registerUser)
+userRouter.post('/users/register', validateUserInputs, registerUser)
 userRouter.post('/users/login',auth, validateUserInputs ,loginUser)
 userRouter.get('/users', auth, getUsers)
 userRouter.get('/users/:id', getOneUser)

@@ -1,4 +1,4 @@
-const Router = require('express')
+const {Router} = require('express')
 const postRoutes = require('./posts.routes')
 const userRoutes = require('./users.routes')
 const commentsRoutes = require('./comments.routes')
