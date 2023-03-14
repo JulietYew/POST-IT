@@ -13,7 +13,7 @@ function generateToken(user){
 
 }
 
-// verify the token
+
 
 
 module.exports = generateToken;

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-const userService = require('../services/users.services')
+const userModel = require('../models/users.model')
+const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config();
 
@@ -7,17 +8,24 @@ dotenv.config();
 
     const auth = async(req, res, next) => {
         try{
-            // the req.header.authorization is used to return the authentication token
-            // the split ('')[1] is used to extract the token from the req.headers
-            const token = req.header.authorization.split('')[1]
+            console.log('first one')
+            let token = ''
+        //Gets token from client header (like a cookie stored or attached to a user's unique id from the client side after they sign up or sign in)
+            if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+            token = req.headers.authorization.split(' ')[1];
+            } else {
+            // This is an alternate method of getting it from previously set cookies for the purpose of testing
+            token = req.cookies.token
+        }
             if(!token){
                 return res.status(404).send({ message: 'You must be signed in to send postits', success: false })
             }
+            console.log('second one')
             const verified = jwt.verify(token, process.env.SECRET_JWT)
             if(!verified){
                 return res.status(404).send({ message: 'User Verification failed', success: false })
             }
-            const user = await userService.getUser({_id:verified.userId, token:'tokens.token'})
+            const user = await userModel.findOne({_id:verified._id, token:'tokens.token'})
             if(!user){
                 return res.status(404).send({ message: 'You are not verified', success: false })
             }
@@ -28,7 +36,7 @@ dotenv.config();
             next()
             
         }catch(error){
-            res.status(404).send({message: err.message || 'Please authenticate' , success: false})
+            return res.status(404).send({message: 'Please authenticate' , success: false})
         
         }
     }
