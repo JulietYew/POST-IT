@@ -43,64 +43,12 @@ Usage
 Authentication
 To use the API, you need to obtain a JWT token by sending a POST request to /api/auth/login with a valid email and password:
 
+RENDER LIVE URL
+https://post-it-8hj9.onrender.com/api/v1/docs
+
 SAMPLE REQUESTS AND RESPONSES
 Creating a user:
 Endpoint: localhost:90900/api/v1/users
-POST /api/auth/login HTTP/1.1
-Content-Type: application/json
-
-{
-  "email": "johndoe@example.com",
-  "password": "mypassword"
-}
-If the credentials are valid, you will receive a JWT token in the response:
-
-http
-Copy code
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-Include the token in the Authorization header of subsequent requests:
-
-http
-Copy code
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Posts
-Get all posts:
-
-http
-Copy code
-GET /api/posts HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Create a post:
-
-http
-Copy code
-POST /api/posts HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Content-Type: application/json
-
-{
-  "text": "Hello world!"
-}
-Get a post by ID:
-
-http
-Copy code
-GET /api/posts/:id HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Update a post by ID:
-
-http
-Copy code
-PUT /api/posts/:id HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Content-Type: application/json
-
-{
-  "text": "Updated post"
-
+POST /api/v1/users/login 
+POST /api/v1/users/register 
 
